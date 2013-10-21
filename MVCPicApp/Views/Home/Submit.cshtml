@@ -1,0 +1,25 @@
+﻿@model MVCPicApp.Models.SubmissionViewModel
+
+@{
+    ViewBag.Title = "Submit";
+}
+
+@*@using (Html.BeginForm())*@
+<form action="" method="post" enctype="multipart/form-data">
+        
+            @Html.LabelFor(model=>model.Submission.Title)
+            @Html.EditorFor(model=>model.Submission.Title)
+            
+            @Html.LabelFor(model=>model.Submission.Description)
+            @Html.EditorFor(model=>model.Submission.Description)
+            
+            @*@Html.LabelFor(model=>model.Submission.PhotoURL)
+            @Html.EditorFor(model=>model.Submission.PhotoURL)*@
+
+            @Html.LabelFor(model=>model.Submission.Photo)
+            
+            
+            <input type="file" name="Photo" />
+    
+            <input type="submit" value="Upload" />
+        </form>

@@ -1,0 +1,26 @@
+﻿@model MVCPicApp.Models.SubmissionViewModel
+
+@{
+    ViewBag.Title = "Publish";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m=>m.Submission.SubmissionId)
+    @Html.HiddenFor(m=>m.Submission.UserId)
+    @Html.HiddenFor(m=>m.Submission.DateUpdated)
+    @Html.HiddenFor(m=>m.Submission.DateCreated)
+    <h1>Title: @Model.Submission.Title</h1>
+
+    <div>Description: @Model.Submission.Description</div>
+
+    <div>
+        <img src="@Model.Submission.PhotoURL" style="height:400px; width: 400px;" />
+    </div>
+    
+    @Html.ActionLink("Publish", "Publish")
+        
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Submission.SubmissionId })
+        
+   
+}

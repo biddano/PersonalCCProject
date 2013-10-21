@@ -1,0 +1,24 @@
+﻿@model MVCPicApp.Models.SubmissionViewModel
+
+
+@{
+    ViewBag.Title = "Edit";
+}
+<h1>Edit Submission</h1>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model =>model.Submission.SubmissionId)
+    @Html.HiddenFor(model =>model.Submission.UserId)
+    @Html.HiddenFor(model =>model.Submission.DateUpdated)
+
+    @Html.LabelFor(model => model.Submission.Title)
+    @Html.EditorFor(model => model.Submission.Title)
+            
+    @Html.LabelFor(model => model.Submission.Description)
+    @Html.EditorFor(model => model.Submission.Description)
+            
+    @Html.LabelFor(model => model.Submission.PhotoURL)
+    @Html.EditorFor(model => model.Submission.PhotoURL, new { @readonly = true })
+            
+    <input type="submit" value="Submit"/>
+}

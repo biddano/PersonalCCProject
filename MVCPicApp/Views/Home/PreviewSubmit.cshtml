@@ -1,0 +1,29 @@
+﻿@model MVCPicApp.Models.SubmissionViewModel
+
+
+@{
+    ViewBag.Title = "SuccessfulSubmit";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m=>m.Submission.SubmissionId)
+    <h1>Title: @Model.Submission.Title</h1>
+
+    <div>Description: @Model.Submission.Description</div>
+
+    <div>
+        @*<img src="~/Content/images/d682661f-f80b-401c-a5a1-a0fa18aa5486_Siberian-Tiger-Running-Through-Snow-Tom-Brakefield-Getty-Images-200353826-001.jpg" style="height:400px; width: 400px;" />*@
+        <img src="~/@Model.Submission.Photo.PhotoUrl" style="height:400px; width: 400px;" />
+    </div>
+    
+    
+    @Html.ActionLink("Publish", "Publish")
+        
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Submission.SubmissionId })
+        
+   
+}
+
+

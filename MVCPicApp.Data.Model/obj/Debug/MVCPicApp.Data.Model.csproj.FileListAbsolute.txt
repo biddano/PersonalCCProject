@@ -1,0 +1,5 @@
+c:\users\coderforrent\documents\visual studio 2012\Projects\MVCPicApp\MVCPicApp.Data.Model\bin\Debug\MVCPicApp.Data.Model.dll
+c:\users\coderforrent\documents\visual studio 2012\Projects\MVCPicApp\MVCPicApp.Data.Model\bin\Debug\MVCPicApp.Data.Model.pdb
+c:\users\coderforrent\documents\visual studio 2012\Projects\MVCPicApp\MVCPicApp.Data.Model\obj\Debug\MVCPicApp.Data.Model.csprojResolveAssemblyReference.cache
+c:\users\coderforrent\documents\visual studio 2012\Projects\MVCPicApp\MVCPicApp.Data.Model\obj\Debug\MVCPicApp.Data.Model.dll
+c:\users\coderforrent\documents\visual studio 2012\Projects\MVCPicApp\MVCPicApp.Data.Model\obj\Debug\MVCPicApp.Data.Model.pdb
