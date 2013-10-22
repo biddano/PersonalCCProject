@@ -1,6 +1,7 @@
 ﻿using MVCPicApp.Adapters.Data;
 using MVCPicApp.Data;
 using MVCPicApp.Data.Model;
+using MVCPicApp.Framework;
 using MVCPicApp.Models;
 using System;
 using System.Collections.Generic;
@@ -65,9 +66,10 @@ namespace MVCPicApp.Controllers
                 photo.Save("~\\" + imagePath);
                 model.Submission.Photo.PhotoUrl = imagePath;
             }
-            
 
-            SubmissionViewModel submission = _adapter.SaveSubmission(model);
+            int userId = UserData.Current.UserId;
+
+            SubmissionViewModel submission = _adapter.SaveSubmission(model, userId);
             
             //want to redirect to a 'Preview' view, but will wait until main functionality is complete
             
@@ -83,10 +85,13 @@ namespace MVCPicApp.Controllers
             return View(submission);
         }
 
-        public ActionResult Publish(SubmissionViewModel model)
+        public ActionResult Publish(int id)
         {
+            SubmissionViewModel model = _adapter.GetSubmissionViewModel(id);
+            
             var submission = model.Submission;
-            return View(submission);
+            
+            return View(model);
 
 
 
@@ -124,10 +129,12 @@ namespace MVCPicApp.Controllers
             //var submission = _adapter.GetSubmissionViewModel(model.Submission.SubmissionId);
 
             //model = _adapter.EditSubmission(model);
-            
+
             
             
             return RedirectToAction("PreviewSubmit", new { id = model.Submission.SubmissionId });
         }
+
+
     }
 }

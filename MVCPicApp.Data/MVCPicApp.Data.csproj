@@ -81,6 +81,14 @@
     <Compile Include="Migrations\201310200259573_AuditFix.Designer.cs">
       <DependentUpon>201310200259573_AuditFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310220221021_AddUserToSubmission.cs" />
+    <Compile Include="Migrations\201310220221021_AddUserToSubmission.Designer.cs">
+      <DependentUpon>201310220221021_AddUserToSubmission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310220258060_AddUserToComment.cs" />
+    <Compile Include="Migrations\201310220258060_AddUserToComment.Designer.cs">
+      <DependentUpon>201310220258060_AddUserToComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seeder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,6 +130,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310200259573_AuditFix.resx">
       <DependentUpon>201310200259573_AuditFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310220221021_AddUserToSubmission.resx">
+      <DependentUpon>201310220221021_AddUserToSubmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310220258060_AddUserToComment.resx">
+      <DependentUpon>201310220258060_AddUserToComment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

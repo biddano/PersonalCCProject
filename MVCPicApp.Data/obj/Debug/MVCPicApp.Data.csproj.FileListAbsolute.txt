@@ -18,3 +18,5 @@ C:\Users\CoderForRent\Documents\Visual Studio 2012\Projects\MVCPicApp\MVCPicApp.
 C:\Users\CoderForRent\Documents\Visual Studio 2012\Projects\MVCPicApp\MVCPicApp.Data\obj\Debug\MVCPicApp.Data.Migrations.AuthenticationFixes.resources
 C:\Users\CoderForRent\Documents\Visual Studio 2012\Projects\MVCPicApp\MVCPicApp.Data\obj\Debug\MVCPicApp.Data.Migrations.FixAuthentication.resources
 C:\Users\CoderForRent\Documents\Visual Studio 2012\Projects\MVCPicApp\MVCPicApp.Data\obj\Debug\MVCPicApp.Data.Migrations.AuditFix.resources
+C:\Users\CoderForRent\Documents\Visual Studio 2012\Projects\MVCPicApp\MVCPicApp.Data\obj\Debug\MVCPicApp.Data.Migrations.AddUserToSubmission.resources
+C:\Users\CoderForRent\Documents\Visual Studio 2012\Projects\MVCPicApp\MVCPicApp.Data\obj\Debug\MVCPicApp.Data.Migrations.AddUserToComment.resources

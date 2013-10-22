@@ -1,0 +1,44 @@
+﻿@model MVCPicApp.Data.Model.User
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<h1>UserProfile</h1>
+
+<div>
+    <p><b>User Name:</b>  @Model.UserName </p>
+    <p><b>Email:</b> @Model.Email</p>
+    
+    <h2>User Submissions</h2>
+    
+
+    @foreach (var i in @Model.Submissions)
+    {
+        <h3>Title: @i.Title</h3>
+        <ul>
+            <li>Description: @i.Description</li>
+            <li>Date Created: @i.DateCreated</li>
+            <li><img src="~/@i.Photo.PhotoUrl" style="height:400px; width: 400px;"/></li>
+            <li>Score: @i.Score</li>
+        </ul>
+    }
+</div>
+<div>
+    <h2>Comments</h2>
+    @if (@Model.Comments.Count == 0)
+    {
+        <h3>There are no comments from this user.</h3>
+    }
+    else
+    {
+        <ul>
+        @foreach (var i in @Model.Comments)
+        {
+          <li>@i.Content</li>
+          <li>@i.DateCreated</li>
+          <li>@i.Score</li>  
+        }
+        </ul>
+    }
+</div>

@@ -10,7 +10,7 @@ namespace MVCPicApp.Adapters.Data
 {
     public class SubmissionAdapter
     {
-        public SubmissionViewModel SaveSubmission(SubmissionViewModel model)
+        public SubmissionViewModel SaveSubmission(SubmissionViewModel model, int userId)
         {
             var context = new AppContext();
             Submission submission = model.Submission;
@@ -20,7 +20,7 @@ namespace MVCPicApp.Adapters.Data
             submission.Score = 0;
             
             //this will be where we take the user session data and make the userId the same as the user's id; make it nullable?
-            submission.UserId = 1;
+            submission.UserId = userId;
             submission.Comments = new List<Comment>();
 
             submission = context.Submissions.Add(submission);
@@ -29,13 +29,13 @@ namespace MVCPicApp.Adapters.Data
             return model;
         }
 
-        public SubmissionViewModel GetSubmissionViewModel(int id)
+        public SubmissionViewModel GetSubmissionViewModel(int SubmissionId)
         {
             AppContext context = new AppContext();
             SubmissionViewModel model = new SubmissionViewModel();
 
             //var query = context.Submissions.ToList();
-            model.Submission = context.Submissions.Find(id);
+            model.Submission = context.Submissions.Find(SubmissionId);
             //model.Submission = query.FirstOrDefault(m => m.SubmissionId == id);
 
             return model;
@@ -50,6 +50,25 @@ namespace MVCPicApp.Adapters.Data
             tempsub = model.Submission;
 
             context.SaveChanges();
+            return model;
+        }
+
+        public User GetUserById(int userId)
+        {
+            var user = new User();
+            AppContext context = new AppContext();
+
+            user = context.Users.Find(userId);
+            return user; 
+        }
+
+        public GalleryViewModel GetAllPublicSubmissions()
+        {
+            AppContext context = new AppContext();
+            GalleryViewModel model = new GalleryViewModel();
+            //shows all submissions with newest ones first
+            model.Submissions = context.Submissions.OrderByDescending(m=>m.DateCreated).ToList();
+
             return model;
         }
     }

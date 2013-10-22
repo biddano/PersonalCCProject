@@ -12,6 +12,7 @@ using MVCPicApp.Models;
 using MVCPicApp.Data;
 using MVCPicApp.Filters;
 using MVCPicApp.Adapters.Data;
+using MVCPicApp.Framework;
 
 namespace MVCPicApp.Controllers
 {
@@ -61,6 +62,7 @@ namespace MVCPicApp.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
+            UserData.Logout();
 
             return RedirectToAction("Index", "Home");
         }
@@ -91,7 +93,7 @@ namespace MVCPicApp.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
-                    //_adapter.SaveUserRegisterModel(model);
+                    _adapter.SaveUserRegisterModel(model);
 
                     return RedirectToAction("Index", "Home");
                 }

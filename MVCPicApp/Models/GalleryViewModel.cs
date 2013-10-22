@@ -6,11 +6,10 @@ using System.Web;
 
 namespace MVCPicApp.Models
 {
-    public class SubmissionViewModel
+    public class GalleryViewModel
     {
-        public Submission Submission { get; set; }
-        public List<Comment> Comments { get; set; }
+        public List<Submission> Submissions { get; set; }
         public Photo Photo { get; set; }
-        public User User { get; set; }
+
     }
 }

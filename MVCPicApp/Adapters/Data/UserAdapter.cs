@@ -8,6 +8,7 @@ using System.Data.Entity;
 using MVCPicApp.Framework;
 using MVCPicApp.Models;
 using MVCPicApp.Data.Model;
+using System.Data;
 
 
 namespace MVCPicApp.Adapters.Data
@@ -40,7 +41,19 @@ namespace MVCPicApp.Adapters.Data
         {
             AppContext context = new AppContext();
             User user = new User();
-            SubmissionAdapter adapter = new SubmissionAdapter();
+            
+            user = context.Users
+                .First(m => m.UserName == model.UserName);
+  
+            user.Email = model.EmailAddress;
+            user.DateCreated = DateTime.UtcNow;
+            user.DateUpdated = DateTime.UtcNow;
+
+            //user = context.Users.Add(user);
+
+            context.Entry(user).State = EntityState.Modified;
+            context.SaveChanges();
+            
             
         }
 
@@ -53,5 +66,28 @@ namespace MVCPicApp.Adapters.Data
 
 
         //}
+
+        //maybe this could just return a user instead of an entire userprofileviewmodel?
+        //public UserProfileViewModel GetUserProfileViewModel(int UserId)
+        //{
+        //    AppContext context = new AppContext();
+        //    UserProfileViewModel model = new UserProfileViewModel();
+        //    model.User = context.Users.Find(UserId);
+        //    model.User.Submissions = context.Submissions.Where(s => s.UserId == UserId).ToList();
+        //    model.User.Comments = context.Comments.Where(c => c.UserId == UserId).ToList();
+            
+        //    return model;
+        //}
+
+        public User GetUserProfileViewModel(int UserId)
+        {
+            AppContext context = new AppContext();
+            User model = new User();
+            model = context.Users.Find(UserId);
+            model.Submissions = context.Submissions.Where(s => s.UserId == UserId).ToList();
+            model.Comments = context.Comments.Where(c => c.UserId == UserId).ToList();
+
+            return model;
+        }
     }
 }

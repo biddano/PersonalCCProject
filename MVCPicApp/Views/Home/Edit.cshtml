@@ -17,8 +17,11 @@
     @Html.LabelFor(model => model.Submission.Description)
     @Html.EditorFor(model => model.Submission.Description)
             
-    @Html.LabelFor(model => model.Submission.PhotoURL)
-    @Html.EditorFor(model => model.Submission.PhotoURL, new { @readonly = true })
+    <img src="~/@Model.Submission.Photo.PhotoUrl" style="height:400px; width: 400px;" />
+    
+        
+    @*@Html.LabelFor(model => model.Submission.PhotoURL)
+    @Html.EditorFor(model => model.Submission.PhotoURL, new { @readonly = true })*@
             
     <input type="submit" value="Submit"/>
 }

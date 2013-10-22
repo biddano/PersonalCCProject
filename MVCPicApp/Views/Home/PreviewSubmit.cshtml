@@ -19,7 +19,7 @@
     </div>
     
     
-    @Html.ActionLink("Publish", "Publish")
+    @Html.ActionLink("Publish", "Publish", new { id = Model.Submission.SubmissionId })
         
     @Html.ActionLink("Edit", "Edit", new { id = Model.Submission.SubmissionId })
         

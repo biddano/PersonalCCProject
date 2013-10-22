@@ -191,6 +191,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SubmissionsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\Framework\UserData.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs">
       <SubType>Code</SubType>
@@ -199,6 +201,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\GalleryViewModel.cs" />
     <Compile Include="Models\SubmissionViewModel.cs" />
     <Compile Include="Models\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -318,6 +321,9 @@
     <Content Include="Views\Home\PreviewSubmit.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
     <Content Include="Views\Home\Publish.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\Submissions\Gallery.cshtml" />
+    <Content Include="Views\Submissions\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Adapters\Interfaces\" />
