@@ -1,5 +1,6 @@
 ﻿using MVCPicApp.Adapters.Data;
 using MVCPicApp.Data.Model;
+using MVCPicApp.Framework;
 using MVCPicApp.Models;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,22 @@ namespace MVCPicApp.Controllers
         public ActionResult Details(int submissionId)
         {
             var model = _adapter.GetSubmissionViewModel(submissionId);
+            model.User = new Data.Model.User();
+            var viewerUserId = UserData.Current.UserId;
+            model.User.UserId = viewerUserId;
+
+            
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Details(SubmissionViewModel model, string userComment)
+        {
+            //model = _adapter.GetSubmissionViewModel(model.Submission.SubmissionId);
+            //model = _adapter.SaveSubmissionComments(model, userComment);
+
+            var temp = _adapter.SaveSubmissionComments(model, userComment);
             
             return View(model);
         }

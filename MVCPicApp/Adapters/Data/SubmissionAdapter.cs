@@ -71,5 +71,36 @@ namespace MVCPicApp.Adapters.Data
 
             return model;
         }
+
+        public SubmissionViewModel SaveSubmissionComments(SubmissionViewModel model, string userComment)
+        {
+            AppContext context = new AppContext();
+            Comment comment = new Comment();
+            //model.Submission = new Submission();
+            model.Submission.Comments = new List<Comment>();
+            //model.User = new User();
+            comment.User = new User();
+            model.Submission.Photo = new Photo();
+            
+            //Submission submission = model.Submission;
+            //model.Submission.Comments = context.Comments.ToList();
+            comment.User.UserId = model.User.UserId;
+            comment.UserId = model.User.UserId;
+            comment.Content = userComment;
+            comment.DateCreated = DateTime.UtcNow;
+            comment.DateUpdated = DateTime.UtcNow;
+            comment.Score = 0;
+            comment.SubmissionId = model.Submission.SubmissionId;
+
+            var temp = context.Comments.Add(comment);
+            model.Submission.Comments.Add(temp);
+            context.Submissions.Add(model.Submission);
+
+            //model.Submission.Comments = context.Comments.ToList();
+            context.SaveChanges();
+
+            
+            return model;
+        }
     }
 }

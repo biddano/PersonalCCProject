@@ -4,33 +4,57 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+   
 
 <div>
-    @Model.Submission.Title
-    @Model.Submission.Description
-    <img src="~/@Model.Submission.Photo.PhotoUrl" style="height:400px; width:400px;" />
-    @Model.Submission.User.UserName
-    @Model.Submission.DateCreated
-    @Model.Submission.Score
+    <h2>@Model.Submission.Title</h2><br />
+    @Model.Submission.Description<br />
+    <img src="~/@Model.Submission.Photo.PhotoUrl" style="height:400px; width:400px;" /><br />
+    Uploaded by: @Model.Submission.User.UserName<br />
+    Uploaded: @Model.Submission.DateCreated<br />
+    Score: @Model.Submission.Score<br />
 
 
 </div>
 <div>
     <h2>Comments</h2>
+    <!--would go into its own partial later on-->
+    
+ @using (Html.BeginForm())
+    {
+    <input type="text" value="Submit Comment" name="userComment"/>
+        @Html.HiddenFor(model=>model.User.UserId)
+    @Html.HiddenFor(model=>model.Submission.DateCreated)
+    @Html.HiddenFor(model=>model.Submission.DateUpdated)
+    @Html.HiddenFor(model=>model.Submission.Description)
+    @Html.HiddenFor(model=>model.Submission.Score)
+    @Html.HiddenFor(model=>model.Submission.Title)
+    @Html.HiddenFor(model=>model.Submission.UserId)
+     @Html.HiddenFor(model=>model.Submission.SubmissionId)
+     @Model.Submission.SubmissionId
+        
+    
+    <input type="submit" value="Submit Comment" />
+ }
+
+    
+    
+    
+    
     @if (Model.Submission.Comments.Count == 0)
     {
-            
+          <h3>There are no comments here yet.</h3>
     }
     else
     {
         foreach (var comment in Model.Submission.Comments)
         {
-            @comment.Content
-            @comment.DateCreated
-            @comment.User
-            @comment.Score
+            @comment.Content<br />
+            @comment.DateCreated<br />
+            @comment.User<br />
+            @comment.Score<br />
         }
     }
 
 </div>
+    

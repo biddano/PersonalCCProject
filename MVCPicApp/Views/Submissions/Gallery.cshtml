@@ -6,22 +6,22 @@
 
 <h2>Gallery</h2>
 
-@foreach (var i in @Model.Submissions)
-{
+@foreach (var i in @Model.Submissions){
+if (!(@i.Photo == null)){
+    <div style="width:300px; height:350px; display:inline-block;">
+    <a href="@Url.Action("Details", "Submissions", new {SubmissionId = @i.SubmissionId})" >
+      
+    <ul style="border:1px solid black;">
+    <li>Title: @i.Title</li>
+    <li><img src="~/@i.Photo.PhotoUrl" style="height:200px; width:200px;"/></li>
+    <li>Description: @i.Description.Substring(0,4)...</li>
+    <li>Comments: @i.Comments.Count</li>
+    <li>Score: @i.Score</li>
+    <li>Uploaded by: @i.User.UserName</li>
+    </ul>
     
-    if (!(@i.Photo == null))
-    {
-      <a href="Url.Action("Details", "Submissions", new {id = @i.SubmissionId})">
-      <div style="width:300px; height:350px; display:inline-block;">
-      <ul style="border:1px solid black;">
-      <li>Title: @i.Title</li>
-      <li><img src="~/@i.Photo.PhotoUrl" style="height:200px; width:200px;"/></li>
-      <li>Description: @i.Description.Substring(0,4)...</li>
-      <li>Comments: @i.Comments.Count</li>
-      <li>Uploaded by: @i.User.UserName</li>
-      </ul>
-      </div>
-      </a>
-    }
+    </a>
+    </div>
+}   
 }
-<!--<a href="/submissions/details/@i.SubmissionId">-->
+
