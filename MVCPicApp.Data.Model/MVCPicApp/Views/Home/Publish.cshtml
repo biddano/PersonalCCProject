@@ -1,0 +1,38 @@
+﻿@model MVCPicApp.Models.SubmissionViewModel
+
+@{
+    ViewBag.Title = "Publish";
+}
+
+    @Html.HiddenFor(m=>m.Submission.SubmissionId)
+    @Html.HiddenFor(m=>m.Submission.UserId)
+    @Html.HiddenFor(m=>m.Submission.DateUpdated)
+    @Html.HiddenFor(m=>m.Submission.DateCreated)
+    <h1>Title: @Model.Submission.Title</h1>
+
+    <div>Description: @Model.Submission.Description</div>
+
+    <div>
+        <img src="~/@Model.Submission.Photo.PhotoUrl" style="height:400px; width: 400px;" />
+    </div>
+    
+    @if (@Model.Submission.Comments.Count == 0)
+    {
+        <h2>There are currently no comments on this submission.</h2>
+    }
+    else
+    {
+        <ol>
+            @foreach(var i in Model.Submission.Comments)
+            {
+                <li>@i.User.UserName<br />@i.Content <br /> @i.DateCreated<br /> @i.Score</li>
+            }
+        </ol>
+  
+    
+    
+    <!-- want this edit actionlink to be only viewable to the user who created the submission -->  
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Submission.SubmissionId })
+        
+   
+}

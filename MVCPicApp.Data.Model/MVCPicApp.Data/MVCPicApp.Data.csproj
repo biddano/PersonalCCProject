@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{70112EC9-30F2-42D7-9C78-74F854A475C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MVCPicApp.Data</RootNamespace>
+    <AssemblyName>MVCPicApp.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppContext.cs" />
+    <Compile Include="Migrations\201310121825173_InitialSeed.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Migrations\201310121825173_InitialSeed.Designer.cs">
+      <DependentUpon>201310121825173_InitialSeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310151657170_AddedPhotoTable.cs" />
+    <Compile Include="Migrations\201310151657170_AddedPhotoTable.Designer.cs">
+      <DependentUpon>201310151657170_AddedPhotoTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310160111503_FixedStuff.cs" />
+    <Compile Include="Migrations\201310160111503_FixedStuff.Designer.cs">
+      <DependentUpon>201310160111503_FixedStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310160135503_FixShit.cs" />
+    <Compile Include="Migrations\201310160135503_FixShit.Designer.cs">
+      <DependentUpon>201310160135503_FixShit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310161659485_PhotoDateTimeOut.cs" />
+    <Compile Include="Migrations\201310161659485_PhotoDateTimeOut.Designer.cs">
+      <DependentUpon>201310161659485_PhotoDateTimeOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310190013359_InitialAuthenticationStuff.cs" />
+    <Compile Include="Migrations\201310190013359_InitialAuthenticationStuff.Designer.cs">
+      <DependentUpon>201310190013359_InitialAuthenticationStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310200239313_AuthenticationFixes.cs" />
+    <Compile Include="Migrations\201310200239313_AuthenticationFixes.Designer.cs">
+      <DependentUpon>201310200239313_AuthenticationFixes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310200245372_FixAuthentication.cs" />
+    <Compile Include="Migrations\201310200245372_FixAuthentication.Designer.cs">
+      <DependentUpon>201310200245372_FixAuthentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310200259573_AuditFix.cs" />
+    <Compile Include="Migrations\201310200259573_AuditFix.Designer.cs">
+      <DependentUpon>201310200259573_AuditFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310220221021_AddUserToSubmission.cs" />
+    <Compile Include="Migrations\201310220221021_AddUserToSubmission.Designer.cs">
+      <DependentUpon>201310220221021_AddUserToSubmission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310220258060_AddUserToComment.cs" />
+    <Compile Include="Migrations\201310220258060_AddUserToComment.Designer.cs">
+      <DependentUpon>201310220258060_AddUserToComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Seeder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCPicApp.Data.Model\MVCPicApp.Data.Model.csproj">
+      <Project>{77e994ee-083b-4aee-b4ac-5412303b0b71}</Project>
+      <Name>MVCPicApp.Data.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201310121825173_InitialSeed.resx">
+      <DependentUpon>201310121825173_InitialSeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310151657170_AddedPhotoTable.resx">
+      <DependentUpon>201310151657170_AddedPhotoTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310160111503_FixedStuff.resx">
+      <DependentUpon>201310160111503_FixedStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310160135503_FixShit.resx">
+      <DependentUpon>201310160135503_FixShit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310161659485_PhotoDateTimeOut.resx">
+      <DependentUpon>201310161659485_PhotoDateTimeOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310190013359_InitialAuthenticationStuff.resx">
+      <DependentUpon>201310190013359_InitialAuthenticationStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310200239313_AuthenticationFixes.resx">
+      <DependentUpon>201310200239313_AuthenticationFixes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310200245372_FixAuthentication.resx">
+      <DependentUpon>201310200245372_FixAuthentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310200259573_AuditFix.resx">
+      <DependentUpon>201310200259573_AuditFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310220221021_AddUserToSubmission.resx">
+      <DependentUpon>201310220221021_AddUserToSubmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310220258060_AddUserToComment.resx">
+      <DependentUpon>201310220258060_AddUserToComment.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
