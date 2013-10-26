@@ -54,5 +54,13 @@ namespace MVCPicApp.Controllers
             
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult Like(SubmissionViewModel model)
+        {
+            model.Submission.Score = _adapter.IncrementScore(model);
+
+            return View(model);
+        }
     }
 }

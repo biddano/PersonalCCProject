@@ -15,13 +15,17 @@
 
     @foreach (var i in @Model.Submissions)
     {
+        <div>
+        <a href="@Url.Action("Details", "Submissions", new { submissionId = @i.SubmissionId })" >
         <h3>Title: @i.Title</h3>
-        <ul>
+        <ul style="list-style-type:none;">
             <li>Description: @i.Description</li>
             <li>Date Created: @i.DateCreated</li>
-            <li><img src="~/@i.Photo.PhotoUrl" style="height:400px; width: 400px;"/></li>
+            <li><img src="~/@i.Photo.PhotoUrl" style="height:200px; width: 200px;"/></li>
             <li>Score: @i.Score</li>
+            <li>Comments: @i.Comments.Count</li>
         </ul>
+            </a></div>
     }
 </div>
 <div>
@@ -32,13 +36,19 @@
     }
     else
     {
-        <ul>
+        
+        <ul style="list-style-type:none;">
         @foreach (var i in @Model.Comments)
         {
+            <a href="@Url.Action("Details", "Submissions", new{submissionId = @i.SubmissionId})">
+            <div style="border:1px solid black; width:350px; margin-bottom: 4px;">
           <li>@i.Content</li>
           <li>@i.DateCreated</li>
           <li>@i.Score</li>  
+            </div>
+            </a>
         }
         </ul>
+            
     }
 </div>

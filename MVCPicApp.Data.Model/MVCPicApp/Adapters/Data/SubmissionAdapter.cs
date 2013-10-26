@@ -131,5 +131,18 @@ namespace MVCPicApp.Adapters.Data
 
             context.SaveChanges();
         }
+
+        public int IncrementScore(SubmissionViewModel model)
+        {
+            AppContext context = new AppContext();
+            model.Submission = context.Submissions.Find(model.Submission.SubmissionId);
+
+            model.Submission.Score++;
+
+            context.Entry(model.Submission).State = System.Data.EntityState.Modified;
+            context.SaveChanges();
+
+            return model.Submission.Score;
+        }
     }
 }

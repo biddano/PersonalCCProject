@@ -27,7 +27,7 @@ namespace MVCPicApp.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            return View();
+            return RedirectToAction("Gallery", "Submissions");
         }
 
         public ActionResult About()
@@ -45,6 +45,7 @@ namespace MVCPicApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Submit()
         {
             var model = new SubmissionViewModel();
@@ -53,6 +54,7 @@ namespace MVCPicApp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Submit(SubmissionViewModel model, WebImage photo)
         {
             model.Submission.Photo = new Photo();

@@ -3,25 +3,90 @@
 @{
     ViewBag.Title = "Gallery";
 }
-
+<div class="container">
 <h2>Gallery</h2>
-
+<div class="row">
 @foreach (var i in @Model.Submissions){
-if (!(@i.Photo == null)){
-    <div style="width:300px; height:350px; display:inline-block;">
-    <a href="@Url.Action("Details", "Submissions", new {SubmissionId = @i.SubmissionId})" >
+if (!(@i.Photo == null))
+{
+    
+        <div class="span3 inline-block" style="background-color:azure; margin-bottom:20px;">
+            <h6 class="text-center">
+                @if(i.Title.Length > 25)
+                {
+                    @i.Title.Substring(0, 25);
+                }
+                else
+                {
+                    @i.Title
+                }
+            </h6>
+            <div  style="width:8em; margin: 0 auto;"><a href="@Url.Action("Details", "Submissions", new {SubmissionId = @i.SubmissionId})" >
+                <img alt="140x140" src="~/@i.Photo.PhotoUrl" class="img-polaroid" style="height:10em;"/></a>
+            </div>
+            <div class="caption text-center">
+                
+                @if(i.Description.Length>25)
+                {
+                    @i.Description.Substring(0, 25);
+                }
+                else
+                {
+                    @i.Description;
+                }
+
+            </div>
+            <p style="margin-left:15px;">Comments: @i.Comments.Count</p>
+            <p style="margin-left:15px;">Score: @i.Score</p>
+            <p style="margin-left:15px;">Uploaded by: <a href="@Url.Action("UserProfile", "User", new {userId = @i.UserId })">@i.User.UserName</a></p>
+        </div>
+}
+}
+    <div class="span12">
+			<div class="pagination pagination-centered pagination-large">
+				<ul>
+					<li>
+						<a href="#">Prev</a>
+					</li>
+					<li>
+						<a href="#">1</a>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#">4</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#">Next</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+</div>
+    
+    @*<div style="width:300px; height:350px; display:inline-block;">*@
+    
       
-    <ul style="border:1px solid black;">
+    @*<ul style="border:1px solid black; list-style-type: none;">
     <li>Title: @i.Title</li>
-    <li><img src="~/@i.Photo.PhotoUrl" style="height:200px; width:200px;"/></li>
+    <li><a href="@Url.Action("Details", "Submissions", new {SubmissionId = @i.SubmissionId})" ><img src="~/@i.Photo.PhotoUrl" style="height:200px; width:200px;"/></a></li>
     <li>Description: @i.Description.Substring(0,4)...</li>
     <li>Comments: @i.Comments.Count</li>
     <li>Score: @i.Score</li>
-    <li>Uploaded by: @i.User.UserName</li>
+    <li><a href="@Url.Action("UserProfile", "User", new {userId = @i.UserId })"> by: @i.User.UserName</a></li>
     </ul>
     
-    </a>
+    
+    </div>*@
+   
+
+
     </div>
-}   
-}
 

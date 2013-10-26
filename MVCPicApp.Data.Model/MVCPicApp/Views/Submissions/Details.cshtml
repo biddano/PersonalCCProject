@@ -10,10 +10,17 @@
     <h2>@Model.Submission.Title</h2><br />
     @Model.Submission.Description<br />
     <img src="~/@Model.Submission.Photo.PhotoUrl" style="height:400px; width:400px;" /><br />
-    Uploaded by: @Model.Submission.User.UserName<br />
+    Uploaded by: <a href="@Url.Action("UserProfile", "User", new {userId = @Model.Submission.UserId })">@Model.Submission.User.UserName<br /></a>
     Uploaded: @Model.Submission.DateCreated<br />
     Score: @Model.Submission.Score<br />
-
+    <button value="Like" id="like">Like</button>
+    <button value="Dislike" id ="dislike">Dislike</button>
+    <script type="text/javascript">
+        var score = @Model.Submission.Score;
+        
+        $(#like).click(function(){
+            $.post('/Submissions/Like', score)});
+    </script>
 
 </div>
 <div>
@@ -49,10 +56,12 @@
     {
         foreach (var comment in Model.Submission.Comments)
         {
+            <div style="border:1px solid black; width:350px; margin-bottom: 4px;">
             @comment.Content<br />
             @comment.DateCreated<br />
             <a href="@Url.Action("UserProfile", "User", new { userId = @comment.User.UserId })">@comment.User.UserName<br /></a>
-            @comment.Score<br />
+            @*@comment.Score<br />*@
+                </div>
         }
     }
 

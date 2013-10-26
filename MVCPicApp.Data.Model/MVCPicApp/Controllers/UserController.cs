@@ -33,5 +33,10 @@ namespace MVCPicApp.Controllers
             return View(model);
         }
 
+        //public ActionResult UserSubmissions(int userId)
+        //{
+
+        //}
+
     }
 }
