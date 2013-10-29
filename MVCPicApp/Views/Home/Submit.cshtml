@@ -3,7 +3,10 @@
 @{
     ViewBag.Title = "Submit";
 }
-
+<div class="container">
+    <div class="row">
+        <div class="span12" style="background-color:azure;padding:10px;border-radius:5px;width:450px;">
+            <h2>Submit a Picture!</h2>
 @*@using (Html.BeginForm())*@
 <form action="" method="post" enctype="multipart/form-data">
         
@@ -11,7 +14,7 @@
             @Html.EditorFor(model=>model.Submission.Title)
             
             @Html.LabelFor(model=>model.Submission.Description)
-            @Html.EditorFor(model=>model.Submission.Description)
+            @Html.TextAreaFor(model=>model.Submission.Description)
             
             @*@Html.LabelFor(model=>model.Submission.PhotoURL)
             @Html.EditorFor(model=>model.Submission.PhotoURL)*@
@@ -23,3 +26,6 @@
     
             <input type="submit" value="Upload" />
         </form>
+            </div>
+        </div>
+    </div>

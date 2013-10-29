@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity.Migrations;
+using MVCPicApp.Framework;
 
 namespace MVCPicApp.Adapters.Data
 {
@@ -77,15 +79,30 @@ namespace MVCPicApp.Adapters.Data
             AppContext context = new AppContext();
             Comment comment = new Comment();
             //model.Submission = new Submission();
-            model.Submission.Comments = new List<Comment>();
+
+
+            model.Submission.Comments = context.Comments.Where(c => c.SubmissionId == model.Submission.SubmissionId).ToList();
+            //List<Comment> comments = model.Submission.Comments;
+            
             //model.User = new User();
-            comment.User = new User();
-            model.Submission.Photo = new Photo();
+            
+            
+            //User user = comment.User;
+            comment.User = context.Users.Find(UserData.Current.UserId);
+
+
+            //model.Submission.Photo = new Photo();
+            model.Submission.Photo = context.Photos.First(p => p.SubmissionId == model.Submission.SubmissionId);
+            
+                
+                
+                //model.Submission.User = new User();
+            model.Submission.User = context.Users.Find(model.User.UserId);
             
             //Submission submission = model.Submission;
             //model.Submission.Comments = context.Comments.ToList();
-            comment.User.UserId = model.User.UserId;
-            comment.UserId = model.User.UserId;
+            comment.User.UserId = UserData.Current.UserId;
+            comment.UserId = UserData.Current.UserId;
             comment.Content = userComment;
             comment.DateCreated = DateTime.UtcNow;
             comment.DateUpdated = DateTime.UtcNow;
@@ -93,14 +110,39 @@ namespace MVCPicApp.Adapters.Data
             comment.SubmissionId = model.Submission.SubmissionId;
 
             var temp = context.Comments.Add(comment);
-            model.Submission.Comments.Add(temp);
-            context.Submissions.Add(model.Submission);
+            model.Submission.Comments.Add(comment);
+            //context.Submissions.AddOrUpdate(model.Submission);
+            context.Entry(model.Submission).State = System.Data.EntityState.Modified;
+            //context.Entry(model.Submission.User).State = System.Data.EntityState.Modified;
+
 
             //model.Submission.Comments = context.Comments.ToList();
             context.SaveChanges();
 
             
             return model;
+        }
+
+        public void SavePhotoToSubmission(SubmissionViewModel model)
+        {
+            AppContext context = new AppContext();
+            model.Submission.Photo.SubmissionId = model.Submission.SubmissionId;
+            context.Entry(model.Submission.Photo).State = System.Data.EntityState.Modified;
+
+            context.SaveChanges();
+        }
+
+        public int IncrementScore(SubmissionViewModel model)
+        {
+            AppContext context = new AppContext();
+            model.Submission = context.Submissions.Find(model.Submission.SubmissionId);
+
+            model.Submission.Score++;
+
+            context.Entry(model.Submission).State = System.Data.EntityState.Modified;
+            context.SaveChanges();
+
+            return model.Submission.Score;
         }
     }
 }

@@ -20,18 +20,23 @@ namespace MVCPicApp.Controllers
 
         
         // this is not done bc it only gives the user profile for the current user(whoever is logged in)
-        public ActionResult UserProfile()
+        public ActionResult UserProfile(int userId)
         {
-            int userSessionId = UserData.Current.UserId;
+            //int userSessionId = UserData.Current.UserId;
             User model = new User();
             //model = new User();
             //model.Submissions = new List<Submission>();
             //model.Comments = new List<Comment>();
-            model = _adapter.GetUserProfileViewModel(userSessionId);
+            model = _adapter.GetUserProfileViewModel(userId);
 
             
             return View(model);
         }
+
+        //public ActionResult UserSubmissions(int userId)
+        //{
+
+        //}
 
     }
 }

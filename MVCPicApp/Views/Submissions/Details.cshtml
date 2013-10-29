@@ -4,20 +4,28 @@
     ViewBag.Title = "Details";
 }
 
-   
+<div class="container">   
 
 <div>
-    <h2>@Model.Submission.Title</h2><br />
+    <h3>@Model.Submission.Title</h3>
+    <span class="muted">Uploaded by:</span> <a href="@Url.Action("UserProfile", "User", new {userId = @Model.Submission.UserId })">@Model.Submission.User.UserName</a><span class="muted"> on @Model.Submission.DateCreated.Value.ToShortDateString() @Model.Submission.DateCreated.Value.ToShortTimeString()</span>
+    
+    <img src="~/@Model.Submission.Photo.PhotoUrl" style="height:400px; width:400px;display:block;" /><br />
     @Model.Submission.Description<br />
-    <img src="~/@Model.Submission.Photo.PhotoUrl" style="height:400px; width:400px;" /><br />
-    Uploaded by: @Model.Submission.User.UserName<br />
-    Uploaded: @Model.Submission.DateCreated<br />
-    Score: @Model.Submission.Score<br />
-
+    @*<span class="muted">Uploaded: @Model.Submission.DateCreated.Value.ToShortDateString() @Model.Submission.DateCreated.Value.ToShortTimeString()<br />*@
+    <span class="muted">Score: @Model.Submission.Score<br /></span>
+    <button value="Like" id="like">Like</button>
+    <button value="Dislike" id ="dislike">Dislike</button>
+    @*<script type="text/javascript">
+        var score = @Model.Submission.Score;
+        
+        $(#like).click(function(){
+            $.post('/Submissions/Like', score)});
+    </script>*@
 
 </div>
-<div>
-    <h2>Comments</h2>
+<div class="container" style="background-color:azure; padding:10px;">
+    <h3>Comments</h3>
     <!--would go into its own partial later on-->
     
  @using (Html.BeginForm())
@@ -31,13 +39,12 @@
     @Html.HiddenFor(model=>model.Submission.Title)
     @Html.HiddenFor(model=>model.Submission.UserId)
      @Html.HiddenFor(model=>model.Submission.SubmissionId)
-     @Model.Submission.SubmissionId
+     
         
     
     <input type="submit" value="Submit Comment" />
  }
 
-    
     
     
     
@@ -47,14 +54,23 @@
     }
     else
     {
+        
         foreach (var comment in Model.Submission.Comments)
         {
+            
+            
+            <div style="border:1px solid gray; width:350px; margin-bottom: 4px; padding:7px; background-color:lightyellow;">
+            <a href="@Url.Action("UserProfile", "User", new { userId = @comment.User.UserId })">@comment.User.UserName</a>
+            <span class="muted">@comment.Score <small>@comment.DateCreated.Value.ToShortDateString() @comment.DateCreated.Value.ToShortTimeString()</small></span><br />
             @comment.Content<br />
-            @comment.DateCreated<br />
-            @comment.User<br />
-            @comment.Score<br />
+            
+            
+            
+            </div>
         }
+    
     }
 
+</div>
 </div>
     

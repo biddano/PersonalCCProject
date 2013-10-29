@@ -36,8 +36,8 @@ namespace MVCPicApp.Controllers
         {
             var model = _adapter.GetSubmissionViewModel(submissionId);
             model.User = new Data.Model.User();
-            var viewerUserId = UserData.Current.UserId;
-            model.User.UserId = viewerUserId;
+            //model.User.UserId = UserData.Current.UserId;
+            model.User = model.Submission.User;
 
             
             return View(model);
@@ -52,6 +52,14 @@ namespace MVCPicApp.Controllers
 
             var temp = _adapter.SaveSubmissionComments(model, userComment);
             
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Like(SubmissionViewModel model)
+        {
+            model.Submission.Score = _adapter.IncrementScore(model);
+
             return View(model);
         }
     }

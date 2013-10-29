@@ -27,7 +27,7 @@ namespace MVCPicApp.Controllers
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            return View();
+            return RedirectToAction("Gallery", "Submissions");
         }
 
         public ActionResult About()
@@ -45,6 +45,7 @@ namespace MVCPicApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Submit()
         {
             var model = new SubmissionViewModel();
@@ -53,6 +54,7 @@ namespace MVCPicApp.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Submit(SubmissionViewModel model, WebImage photo)
         {
             model.Submission.Photo = new Photo();
@@ -65,11 +67,13 @@ namespace MVCPicApp.Controllers
                 var imagePath = "Content\\images\\" + newFileName;
                 photo.Save("~\\" + imagePath);
                 model.Submission.Photo.PhotoUrl = imagePath;
+                //model.Submission.Photo.SubmissionId = model.Submission.SubmissionId;
             }
 
             int userId = UserData.Current.UserId;
 
             SubmissionViewModel submission = _adapter.SaveSubmission(model, userId);
+            _adapter.SavePhotoToSubmission(submission);
             
             //want to redirect to a 'Preview' view, but will wait until main functionality is complete
             
